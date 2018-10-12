@@ -10,6 +10,7 @@ public class Checkpoint : MonoBehaviour {
         {
             Debug.Log("Player entered the checkpoint.");
             PlayerCharacter player = collision.GetComponent<PlayerCharacter>();
+            SoundManagerScript.PlaySound("hitCheckpoint");
         }
     }
 }

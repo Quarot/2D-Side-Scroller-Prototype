@@ -10,7 +10,9 @@ public class Hazard : MonoBehaviour {
         if (collision.gameObject.CompareTag("Player"))
         {
             Debug.Log("Player entered the hazard.");
+            //SoundManagerScript.PlaySound("death");
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            SoundManagerScript.PlaySound("playerDies");
         }
         else
         {

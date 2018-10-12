@@ -24,6 +24,9 @@ public class PlayerCharacter : MonoBehaviour {
     [SerializeField]
     private ContactFilter2D groundContactFilter;
 
+    public AudioClip jumpSound;
+    public AudioSource soundSource;
+
     private float horizontalInput;
     private bool isOnGround;
     private Collider2D[] groundHitDetectionResults = new Collider2D[16];
@@ -73,6 +76,8 @@ public class PlayerCharacter : MonoBehaviour {
         if (Input.GetButtonDown("Jump") && isOnGround)
         {
             rb2d.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            //Debug.Log("Player is jumping");
+            SoundManagerScript.PlaySound("doJump");
         }
     }
 
