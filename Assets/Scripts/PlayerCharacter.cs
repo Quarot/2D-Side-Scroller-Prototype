@@ -32,6 +32,12 @@ public class PlayerCharacter : MonoBehaviour {
     private bool isOnGround;
     private Collider2D[] groundHitDetectionResults = new Collider2D[16];
     private Checkpoint currentCheckpoint;
+    private AudioSource audioSource;
+
+    public void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
 
     // Update is called once per frame
     void Update ()
@@ -93,20 +99,21 @@ public class PlayerCharacter : MonoBehaviour {
     public void Respawn()
     {
         //SoundManagerScript.PlaySound("playerDies");
-
+        //TO DO: Don't reload the scene until done with death animation, and sound effect
         if (currentCheckpoint == null)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-            SoundManagerScript.PlaySound("playerDies");
+            //SoundManagerScript.PlaySound("playerDies");
         }
         else
         {
             rb2d.velocity = Vector2.zero;
             transform.position = currentCheckpoint.transform.position;
-            SoundManagerScript.PlaySound("playerDies");
+            //SoundManagerScript.PlaySound("playerDies");
         }
+        audioSource.Play();
 
-        
+
     }
 
     public void SetCurrentCheckpoint(Checkpoint newCurrentCheckpoint)
