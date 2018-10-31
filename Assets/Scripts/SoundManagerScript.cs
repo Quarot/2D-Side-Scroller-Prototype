@@ -10,7 +10,7 @@ public class SoundManagerScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		playerJump = Resources.Load<AudioClip> ("jump");
-        playerDeath = Resources.Load<AudioClip>("playerDeath2");
+        playerDeath = Resources.Load<AudioClip>("playerDeath4");
         checkpointGet = Resources.Load<AudioClip>("checkpoint");
         audioSrc = GetComponent<AudioSource>();
 	}
@@ -29,8 +29,9 @@ public class SoundManagerScript : MonoBehaviour {
                 //Debug.Log("Playing jump sound effect.");
                 break;
             case "playerDies":
+                Debug.Log("Starting death sound effect.");
                 audioSrc.PlayOneShot(playerDeath);
-                Debug.Log("Playing death sound effect.");
+                //Debug.Log("Completed death sound effect.");
                 break;
             case "hitCheckpoint":
                 audioSrc.PlayOneShot(checkpointGet);

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerCharacter : MonoBehaviour {
     [SerializeField]
@@ -89,8 +90,34 @@ public class PlayerCharacter : MonoBehaviour {
         rb2d.velocity = clampedVelocity;
     }
 
-    private void SetCurrentCheckpoint(Checkpoint newCurrentCheckpoint)
+    public void Respawn()
     {
+        //SoundManagerScript.PlaySound("playerDies");
+
+        if (currentCheckpoint == null)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            SoundManagerScript.PlaySound("playerDies");
+        }
+        else
+        {
+            rb2d.velocity = Vector2.zero;
+            transform.position = currentCheckpoint.transform.position;
+            SoundManagerScript.PlaySound("playerDies");
+        }
+
+        
+    }
+
+    public void SetCurrentCheckpoint(Checkpoint newCurrentCheckpoint)
+    {
+        if(currentCheckpoint != null)
+        {
+            currentCheckpoint.SetIsActivated(false);
+
+        }
+
         currentCheckpoint = newCurrentCheckpoint;
+        currentCheckpoint.SetIsActivated(true);
     }
 }

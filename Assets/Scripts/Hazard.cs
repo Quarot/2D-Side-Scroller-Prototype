@@ -11,8 +11,11 @@ public class Hazard : MonoBehaviour {
         {
             Debug.Log("Player entered the hazard.");
             //SoundManagerScript.PlaySound("death");
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-            SoundManagerScript.PlaySound("playerDies");
+            //SoundManagerScript.PlaySound("playerDies");
+            PlayerCharacter player = collision.GetComponent<PlayerCharacter>();
+            player.Respawn();
+            //
+            //SoundManagerScript.PlaySound("playerDies");
         }
         else
         {
