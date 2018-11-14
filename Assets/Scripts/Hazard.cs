@@ -5,6 +5,15 @@ using UnityEngine.SceneManagement;
 
 public class Hazard : MonoBehaviour {
 
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Debug.Log("Player entered the hazard.");
+        //SoundManagerScript.PlaySound("death");
+        //SoundManagerScript.PlaySound("playerDies");
+        PlayerCharacter player = collision.gameObject.GetComponent<PlayerCharacter>();
+        player.Respawn();
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
