@@ -12,7 +12,8 @@ public class Hazard : MonoBehaviour {
         //SoundManagerScript.PlaySound("death");
         //SoundManagerScript.PlaySound("playerDies");
         PlayerCharacter player = collision.gameObject.GetComponent<PlayerCharacter>();
-        player.Respawn();
+        //player.Respawn();
+        player.KillPlayer();
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -22,9 +23,9 @@ public class Hazard : MonoBehaviour {
             //SoundManagerScript.PlaySound("death");
             //SoundManagerScript.PlaySound("playerDies");
             PlayerCharacter player = collision.GetComponent<PlayerCharacter>();
-            player.Respawn();
-            //
-            //SoundManagerScript.PlaySound("playerDies");
+            //player.Respawn();
+            player.KillPlayer();
+            
         }
         else
         {

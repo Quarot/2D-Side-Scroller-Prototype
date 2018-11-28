@@ -24,19 +24,29 @@ public class PlayerCharacter : MonoBehaviour {
 
     [SerializeField]
     private ContactFilter2D groundContactFilter;
-
-    public AudioClip jumpSound;
-    public AudioSource soundSource;
+    [SerializeField]
+    AudioClip jumpSound;
+    [SerializeField]
+    AudioSource soundSource;
 
     private float horizontalInput;
     private bool isOnGround;
     private Collider2D[] groundHitDetectionResults = new Collider2D[16];
     private Checkpoint currentCheckpoint;
     private AudioSource audioSource;
+    
+    bool facingRight = true;
+    float groundRadius = 0.2f;
+    bool playerDead = false;
+    
+    Animator anim;
+
+    
 
     public void Start()
     {
         audioSource = GetComponent<AudioSource>();
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -55,8 +65,26 @@ public class PlayerCharacter : MonoBehaviour {
     private void FixedUpdate()
     {
         UpdatePhysicsMaterial();
-        Move();
+        if (playerDead == false)
+        {
+            Move();
+        }
+        
 
+        
+
+        if (horizontalInput > 0 && !facingRight)
+            Flip();
+        else if (horizontalInput < 0 && facingRight)
+            Flip();
+
+        
+        anim.SetBool("Ground", isOnGround);
+
+        anim.SetFloat("vSpeed", GetComponent<Rigidbody2D>().velocity.y);
+
+        anim.SetFloat("Speed", Mathf.Abs(rb2d.velocity.x));
+        anim.SetBool("Dead", playerDead);
     }
 
     private void UpdatePhysicsMaterial()
@@ -96,6 +124,21 @@ public class PlayerCharacter : MonoBehaviour {
         rb2d.velocity = clampedVelocity;
     }
 
+    public void KillPlayer()
+    {
+        playerDead = true;
+        SoundManagerScript.PlaySound("playerDies");
+    }
+
+    private void UpdateRespawn()
+    {
+        if (Input.GetButtonDown("Respawn") && playerDead == true)
+        {
+            Respawn();
+        }
+        
+    }
+
     public void Respawn()
     {
         //SoundManagerScript.PlaySound("playerDies");
@@ -104,12 +147,14 @@ public class PlayerCharacter : MonoBehaviour {
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             //SoundManagerScript.PlaySound("playerDies");
+            playerDead = false;
         }
         else
         {
             rb2d.velocity = Vector2.zero;
             transform.position = currentCheckpoint.transform.position;
             //SoundManagerScript.PlaySound("playerDies");
+            playerDead = false;
         }
         audioSource.Play();
 
@@ -126,5 +171,13 @@ public class PlayerCharacter : MonoBehaviour {
 
         currentCheckpoint = newCurrentCheckpoint;
         currentCheckpoint.SetIsActivated(true);
+    }
+
+    void Flip()
+    {
+        facingRight = !facingRight;
+        Vector3 theScale = transform.localScale;
+        theScale.x *= -1;
+        transform.localScale = theScale;
     }
 }

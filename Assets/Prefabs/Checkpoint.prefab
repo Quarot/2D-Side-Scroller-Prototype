@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 61078134234452262}
   - component: {fileID: 114292284365522620}
   - component: {fileID: 82832230786670850}
+  - component: {fileID: 95170322376012098}
   m_Layer: 0
   m_Name: Checkpoint
   m_TagString: Untagged
@@ -37,7 +38,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1227594848636682}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -12.507519, y: -4.050327, z: 0}
+  m_LocalPosition: {x: 12.433603, y: -3.5634885, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -163,6 +164,24 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!95 &95170322376012098
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1227594848636682}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e12d6dd440de9204fb9d720d0b8e2fcf, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &114292284365522620
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -174,8 +193,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e3286341da63ff43bc2b12aa3549568, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inactivatedRotationSpeed: 100
-  activatedRotationSpeed: 300
+  inactivatedRotationSpeed: 0
+  activatedRotationSpeed: 0
   inactivatedScale: 1
   activatedScale: 1.5
   inactivatedColor: {r: 0.6901961, g: 0.1254902, b: 0.85098046, a: 0.39215687}
