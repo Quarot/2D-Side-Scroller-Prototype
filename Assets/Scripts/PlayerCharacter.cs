@@ -55,6 +55,7 @@ public class PlayerCharacter : MonoBehaviour {
         UpdateIsOnGround();
         UpdateHorizontalInput();
         HandleJumpInput();
+        UpdateRespawn();
     }
 
     private void UpdateHorizontalInput()
@@ -108,7 +109,7 @@ public class PlayerCharacter : MonoBehaviour {
 
     private void HandleJumpInput()
     {
-        if (Input.GetButtonDown("Jump") && isOnGround)
+        if (Input.GetButtonDown("Jump") && isOnGround && playerDead == false)
         {
             rb2d.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
             //Debug.Log("Player is jumping");
@@ -128,6 +129,7 @@ public class PlayerCharacter : MonoBehaviour {
     {
         playerDead = true;
         SoundManagerScript.PlaySound("playerDies");
+        rb2d.freezeRotation = false;
     }
 
     private void UpdateRespawn()
@@ -141,22 +143,25 @@ public class PlayerCharacter : MonoBehaviour {
 
     public void Respawn()
     {
+        playerDead = false;
+        rb2d.freezeRotation = true;
+        rb2d.rotation = 0;
         //SoundManagerScript.PlaySound("playerDies");
         //TO DO: Don't reload the scene until done with death animation, and sound effect
         if (currentCheckpoint == null)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             //SoundManagerScript.PlaySound("playerDies");
-            playerDead = false;
+            
         }
         else
         {
             rb2d.velocity = Vector2.zero;
             transform.position = currentCheckpoint.transform.position;
             //SoundManagerScript.PlaySound("playerDies");
-            playerDead = false;
         }
-        audioSource.Play();
+
+        //audioSource.Play();
 
 
     }

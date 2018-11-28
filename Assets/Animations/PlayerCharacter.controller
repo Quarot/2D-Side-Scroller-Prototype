@@ -130,6 +130,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 4
     m_ConditionEvent: vSpeed
     m_EventTreshold: 0.01
+  - m_ConditionMode: 2
+    m_ConditionEvent: Dead
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102168101868780724}
   m_Solo: 0
@@ -205,6 +208,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 3
     m_ConditionEvent: vSpeed
     m_EventTreshold: 0.01
+  - m_ConditionMode: 2
+    m_ConditionEvent: Dead
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102889481857851472}
   m_Solo: 0
