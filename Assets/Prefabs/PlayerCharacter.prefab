@@ -58,7 +58,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1769885033650724}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -10.79, y: -4.5, z: 0}
+  m_LocalPosition: {x: -12.733035, y: -2.485977, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4157836037403988}
@@ -324,7 +324,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   accelerationForce: 20
   maxSpeed: 5
-  jumpForce: 10
+  jumpForce: 10.5
   rb2d: {fileID: 50995184027718268}
   playerGroundCollider: {fileID: 61356978621426824}
   playerMovingPhysicsMaterial: {fileID: 6200000, guid: 94ab8f3314b4e6a46bc0a3e7f72e5db5,
